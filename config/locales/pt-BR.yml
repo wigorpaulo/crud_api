@@ -1,0 +1,16 @@
+pt-BR:
+  hello: "Olá mundo"
+  token:
+    expired: 'O token expirou! Favor gerar novamente'
+    invalid: 'O token é inválido'
+    not_provided: 'O token não esta fornecido'
+    type_invalid: 'O tipo do token é inválido'
+  create_token:
+    invalid_email_or_password: 'E-mail ou senha esta inválido'
+    email_not_present: 'E-mail esta em branco'
+    password_not_present: 'Senha esta em branco'
+    email_or_password_not_match: 'Email ou senha incorreta'
+  parms:
+    invalid: 'Parametro esta inválido'
+  action:
+    zip_code_not_found: 'Registros não encontrado para o cep informado: %{zip_code}'

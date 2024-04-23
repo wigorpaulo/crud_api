@@ -1,0 +1,15 @@
+en:
+  activerecord:
+    models:
+      zip_code: 'ZIP CODE'
+    attributes:
+      zip_code:
+        id: 'ID'
+        zip_code: 'ZIP CODE'
+        address: 'Address'
+        neighborhood: 'Neighborhood'
+        city: 'City'
+        state: 'State'
+        complement: 'Complement'
+        created_at: 'Created at'
+        updated_at: 'Updated at'
