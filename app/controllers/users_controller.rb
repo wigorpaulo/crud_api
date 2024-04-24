@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  skip_before_action :authenticate_request!, only: %i[index create_token]
+  skip_before_action :authenticate_request!, only: %i[index show create_token]
   before_action :valid_params, only: [:create_token]
   before_action :set_user, only: %i[show update destroy]
 
@@ -57,6 +57,11 @@ class UsersController < ApplicationController
 
   def set_user
     @user = User.find(params[:id])
+  rescue StandardError
+    render json: { error: I18n.t('record.not_found',
+                                 model: I18n.t('activerecord.models.user'),
+                                 id: params[:id]) },
+           status: :not_found
   end
 
   def user_params
