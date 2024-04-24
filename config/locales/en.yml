@@ -41,7 +41,5 @@ en:
     email_not_present: 'Email is blank'
     password_not_present: 'Password is blank'
     email_or_password_not_match: 'Incorrect email or password'
-  parms:
+  params:
     invalid: 'Parameter is invalid'
-  action:
-    zip_code_not_found: 'Records not found for the zip code entered: %{zip_code}'

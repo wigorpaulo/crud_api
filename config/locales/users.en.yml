@@ -1,0 +1,12 @@
+pt-BR:
+  activerecord:
+    models:
+      user: 'User'
+    attributes:
+      user:
+        id: 'ID'
+        name: 'Name'
+        email: 'Email'
+        password: 'Password'
+        created_at: 'Criado em'
+        updated_at: 'Atualizado em'

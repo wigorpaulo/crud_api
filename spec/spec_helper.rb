@@ -17,6 +17,7 @@ SimpleCov.start do
   add_group 'Libs', 'lib'
   add_group 'Controllers', 'app/controllers'
   add_group 'Models', 'app/models'
+  add_group 'Serializers', 'app/serializers'
   add_group 'Specs', 'spec'
 end
 # See https://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration

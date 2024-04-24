@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::API
   before_action :authenticate_request!
+  before_action :valid_id_params, only: %i[show update destroy]
 
   private
 
@@ -26,4 +27,10 @@ class ApplicationController < ActionController::API
   end
 
   attr_reader :current_user
+
+  def valid_id_params
+    return if params[:id].to_i.positive?
+
+    render json: { error: I18n.t('params.invalid') }, status: :bad_request
+  end
 end

@@ -1,0 +1,12 @@
+pt-BR:
+  activerecord:
+    models:
+      post: 'Post'
+    attributes:
+      zip_code:
+        id: 'ID'
+        title: 'Title'
+        text: 'Tex'
+        user_id: 'User'
+        created_at: 'Created at'
+        updated_at: 'Updated at'
