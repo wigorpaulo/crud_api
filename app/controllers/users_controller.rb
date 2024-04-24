@@ -37,11 +37,8 @@ class UsersController < ApplicationController
 
   # DELETE /users/1
   def destroy
-    if @user.destroy
-      render json: @user, status: :ok
-    else
-      render json: { errors: @user.errors }, status: :unprocessable_entity
-    end
+    @user.destroy
+    render json: @user, status: :ok
   end
 
   def create_token
@@ -63,7 +60,7 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:id, :name, :email, :password_digest)
+    params.require(:user).permit(:id, :name, :email, :password)
   end
 
   def generate_token(user)
