@@ -10,7 +10,5 @@ pt-BR:
     email_not_present: 'E-mail esta em branco'
     password_not_present: 'Senha esta em branco'
     email_or_password_not_match: 'Email ou senha incorreta'
-  parms:
-    invalid: 'Parametro esta inválido'
-  action:
-    zip_code_not_found: 'Registros não encontrado para o cep informado: %{zip_code}'
+  params:
+    invalid: 'Parâmetro esta inválido'
