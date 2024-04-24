@@ -45,6 +45,23 @@ RSpec.describe '/users', type: :request do
         expect(json_response[:error]).to match(/#{I18n.t('params.invalid')}/)
       end
     end
+
+    context 'with user not authenticated and params id not found' do
+      before do
+        get user_url(99)
+      end
+
+      it 'response status not_found' do
+        expect(response).to have_http_status(:not_found)
+      end
+
+      it 'response message error' do
+        json_response = JSON.parse(response.body, symbolize_names: true)
+        expect(json_response[:error]).to match(/#{I18n.t('record.not_found',
+                                                         model: I18n.t('activerecord.models.user'),
+                                                         id: 99)}/)
+      end
+    end
   end
 
   describe 'POST /create' do
@@ -176,6 +193,23 @@ RSpec.describe '/users', type: :request do
       end
     end
 
+    context 'with user not authenticated and params id not found' do
+      before do
+        patch user_url(99), headers: valid_headers, params: { user: { email: 'novo_email@gmail.com' } }
+      end
+
+      it 'response status not_found' do
+        expect(response).to have_http_status(:not_found)
+      end
+
+      it 'response message error' do
+        json_response = JSON.parse(response.body, symbolize_names: true)
+        expect(json_response[:error]).to match(/#{I18n.t('record.not_found',
+                                                         model: I18n.t('activerecord.models.user'),
+                                                         id: 99)}/)
+      end
+    end
+
     context 'with user authenticate and expired token' do
       before do
         sleep(7.seconds)
@@ -234,6 +268,23 @@ RSpec.describe '/users', type: :request do
       it 'response message error' do
         json_response = JSON.parse(response.body, symbolize_names: true)
         expect(json_response[:error]).to match(/#{I18n.t('token.not_provided')}/)
+      end
+    end
+
+    context 'with user not authenticated and params id not found' do
+      before do
+        delete user_url(99), headers: valid_headers
+      end
+
+      it 'response status not_found' do
+        expect(response).to have_http_status(:not_found)
+      end
+
+      it 'response message error' do
+        json_response = JSON.parse(response.body, symbolize_names: true)
+        expect(json_response[:error]).to match(/#{I18n.t('record.not_found',
+                                                         model: I18n.t('activerecord.models.user'),
+                                                         id: 99)}/)
       end
     end
 
