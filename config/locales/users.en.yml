@@ -1,4 +1,4 @@
-pt-BR:
+en:
   activerecord:
     models:
       user: 'User'
@@ -8,5 +8,5 @@ pt-BR:
         name: 'Name'
         email: 'Email'
         password: 'Password'
-        created_at: 'Criado em'
-        updated_at: 'Atualizado em'
+        created_at: 'Created at'
+        updated_at: 'Updated at'

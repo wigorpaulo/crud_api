@@ -1,12 +1,12 @@
 en:
   activerecord:
     models:
-      post: 'Post'
+      comment: 'Comment'
     attributes:
-      zip_code:
+      user:
         id: 'ID'
-        title: 'Title'
-        text: 'Tex'
-        user_id: 'User'
+        name: 'Name'
+        text: 'Comment'
+        post_id: 'Post'
         created_at: 'Created at'
         updated_at: 'Updated at'

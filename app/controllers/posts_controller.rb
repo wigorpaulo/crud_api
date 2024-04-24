@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  skip_before_action :authenticate_request!, only: [:index]
+  skip_before_action :authenticate_request!, only: %i[index show]
   before_action :set_post, only: %i[show update destroy]
 
   # GET /posts

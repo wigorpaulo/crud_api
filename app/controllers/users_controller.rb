@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  skip_before_action :authenticate_request!, only: %i[index create_token]
+  skip_before_action :authenticate_request!, only: %i[index show create_token]
   before_action :valid_params, only: [:create_token]
   before_action :set_user, only: %i[show update destroy]
 

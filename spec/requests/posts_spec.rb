@@ -21,9 +21,9 @@ RSpec.describe '/posts', type: :request do
   describe 'GET /show' do
     let!(:post) { create(:post) }
 
-    context 'with user authenticated' do
+    context 'with user not authenticated' do
       before do
-        get post_url(post), headers: valid_headers
+        get post_url(post)
       end
 
       it 'response status ok' do
@@ -31,9 +31,9 @@ RSpec.describe '/posts', type: :request do
       end
     end
 
-    context 'with user authenticated and params id is null' do
+    context 'with user not authenticated and params id is null' do
       before do
-        get post_url('null'), headers: valid_headers
+        get post_url('null')
       end
 
       it 'response status bad_request' do
@@ -43,52 +43,6 @@ RSpec.describe '/posts', type: :request do
       it 'response message error' do
         json_response = JSON.parse(response.body, symbolize_names: true)
         expect(json_response[:error]).to match(/#{I18n.t('params.invalid')}/)
-      end
-    end
-
-    context 'with header Authorization is token type error' do
-      before do
-        get post_url(post), headers: { Authorization: token }
-      end
-
-      it 'response status unauthorized' do
-        expect(response).to have_http_status(:unauthorized)
-      end
-
-      it 'response message error' do
-        json_response = JSON.parse(response.body, symbolize_names: true)
-        expect(json_response[:error]).to match(/#{I18n.t('token.type_invalid')}/)
-      end
-    end
-
-    context 'with header Authorization is token nil' do
-      before do
-        get post_url(post), headers: { Authorization: nil }
-      end
-
-      it 'response status unauthorized' do
-        expect(response).to have_http_status(:unauthorized)
-      end
-
-      it 'response message error' do
-        json_response = JSON.parse(response.body, symbolize_names: true)
-        expect(json_response[:error]).to match(/#{I18n.t('token.not_provided')}/)
-      end
-    end
-
-    context 'with user authenticate and expired token' do
-      before do
-        sleep(7.seconds)
-        get post_url(post), headers: { Authorization: "Bearer #{token}" }
-      end
-
-      it 'response status unauthorized' do
-        expect(response).to have_http_status(:unauthorized)
-      end
-
-      it 'response message error' do
-        json_response = JSON.parse(response.body, symbolize_names: true)
-        expect(json_response[:errors].first).to match(/#{I18n.t('token.expired')}/)
       end
     end
   end

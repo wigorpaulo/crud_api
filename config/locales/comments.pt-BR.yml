@@ -1,12 +1,12 @@
 pt-BR:
   activerecord:
     models:
-      user: 'Usuário'
+      comment: 'Comentário'
     attributes:
       user:
         id: 'ID'
         name: 'Nome'
-        email: 'E-mail'
-        password: 'Senha'
+        text: 'Comentário'
+        post_id: 'Post'
         created_at: 'Criado em'
         updated_at: 'Atualizado em'
