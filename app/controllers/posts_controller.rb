@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_action :valid_params, only: %i[show update destroy]
+  skip_before_action :authenticate_request!, only: [:index]
   before_action :set_post, only: %i[show update destroy]
 
   # GET /posts
@@ -17,11 +17,12 @@ class PostsController < ApplicationController
   # POST /posts
   def create
     @post = Post.new(post_params)
+    @post.user = @current_user
 
     if @post.save
       render json: @post, status: :created
     else
-      render json: { errors: [@post.errors] }, status: :unprocessable_entity
+      render json: { errors: @post.errors }, status: :unprocessable_entity
     end
   end
 
@@ -30,7 +31,7 @@ class PostsController < ApplicationController
     if @post.update(post_params)
       render json: @post, status: :ok
     else
-      render json: { errors: [@post.errors] }, status: :unprocessable_entity
+      render json: { errors: @post.errors }, status: :unprocessable_entity
     end
   end
 
@@ -39,7 +40,7 @@ class PostsController < ApplicationController
     if @post.destroy
       render json: @post, status: :ok
     else
-      render json: { errors: [@post.errors] }, status: :unprocessable_entity
+      render json: { errors: @post.errors }, status: :unprocessable_entity
     end
   end
 
@@ -53,11 +54,5 @@ class PostsController < ApplicationController
   # Only allow a list of trusted parameters through.
   def post_params
     params.require(:post).permit(:id, :title, :text, :user_id)
-  end
-
-  def valid_params
-    return if params[:id].to_i.positive?
-
-    render json: { error: I18n.t('params.invalid') }, status: :bad_request
   end
 end

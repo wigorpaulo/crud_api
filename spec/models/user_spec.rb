@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  let(:user) { FactoryBot.create(:user) }
+  let(:user) { create(:user) }
 
   context 'with should attributes response' do
     it { is_expected.to respond_to(:id) }
