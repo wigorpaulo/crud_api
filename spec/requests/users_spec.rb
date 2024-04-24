@@ -225,7 +225,8 @@ RSpec.describe '/users', type: :request do
     context 'with user authenticate and expired token' do
       before do
         sleep(7.seconds)
-        patch user_url(user), headers: { Authorization: "Bearer #{token}" }, params: { user: { email: 'novo_email@gmail.com' } }
+        patch user_url(user), headers: { Authorization: "Bearer #{token}" },
+                              params: { user: { email: 'novo_email@gmail.com' } }
       end
 
       it 'response status unauthorized' do
