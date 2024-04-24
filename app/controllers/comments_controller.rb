@@ -45,6 +45,11 @@ class CommentsController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_comment
     @comment = Comment.includes(post: [:user]).find(params[:id])
+  rescue StandardError
+    render json: { errors: I18n.t('record.not_found',
+                                  model: I18n.t('activerecord.models.comment'),
+                                  id: params[:id]) },
+           status: :not_found
   end
 
   # Only allow a list of trusted parameters through.

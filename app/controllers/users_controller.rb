@@ -57,6 +57,11 @@ class UsersController < ApplicationController
 
   def set_user
     @user = User.find(params[:id])
+  rescue StandardError
+    render json: { errors: I18n.t('record.not_found',
+                                  model: I18n.t('activerecord.models.user'),
+                                  id: params[:id]) },
+           status: :not_found
   end
 
   def user_params
